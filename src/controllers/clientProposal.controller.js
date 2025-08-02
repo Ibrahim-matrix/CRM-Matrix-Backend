@@ -1,6 +1,7 @@
 const httpStatus = require("http-status");
 const { Proposal, ProposalGreeting, users, course } = require("../models");
 const catchAsync = require("../utils/catchAsync");
+const { sendClientPropoalEmail } = require("../utils/sendEmail");
 
 const getClientPropoal = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -59,7 +60,12 @@ const updateAcceptAndSignClientProposal = catchAsync(async (req, res) => {
 
   const proposal = await Proposal.findByIdAndUpdate(
     id,
-    { status: "ACCEPTED", Esign: req.body.esign },
+    {
+      status: "ACCEPTED",
+      Esign: req.body.esign,
+      clientReactionDate: new Date(),
+      clientNote: req.body.clientNote,
+    },
     { new: true }
   );
 
@@ -75,7 +81,34 @@ const updateAcceptAndSignClientProposal = catchAsync(async (req, res) => {
   });
 });
 
+const sendProposalToClient = catchAsync(async (req, res) => {
+  const { id } = req.body;
+  const proposal = await Proposal.findById(id);
+
+  if (!proposal) {
+    return res.status(httpStatus.NOT_FOUND).json({
+      message: "Proposal not found.",
+      Data: [],
+    });
+  }
+  const proposalObj = proposal.toObject();
+
+  const { name, email, _id } = proposalObj;
+
+  await sendClientPropoalEmail({
+    clientEmail: email,
+    clientName: name,
+    proposalLink: _id,
+    res,
+  });
+
+  proposal.sentDate = new Date();
+  proposal.status = "SENT PENDING";
+  await proposal.save();
+});
+
 module.exports = {
   getClientPropoal,
   updateAcceptAndSignClientProposal,
+  sendProposalToClient,
 };

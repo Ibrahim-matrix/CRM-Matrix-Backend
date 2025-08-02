@@ -94,6 +94,18 @@ const ProposalSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    sentDate: {
+      type: Date,
+      default: null,
+    },
+    clientReactionDate: {
+      type: Date,
+      default: null,
+    },
+    clientNote: {
+      type: String,
+      defaulte: null,
+    },
     name: {
       type: String,
       required: true,
