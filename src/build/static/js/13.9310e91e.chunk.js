@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[13],{4013:function(e,n,r){r.r(n);r(2791);var t=r(4087),o=r(176),s=r(4363),c=r(9229),l=r(7692),a=r(184);n.default=function(){return(0,a.jsx)(t.xu,{children:(0,a.jsxs)(o.k,{flexDir:"column",justifyContent:"center",alignItems:"center",children:[(0,a.jsx)(s.J,{as:l.I2T,boxSize:10,color:"yellow.400"}),(0,a.jsx)(c.x,{fontSize:"xl",color:"gray.600",mt:2,children:"Sorry, you are not authorized to access this page."})]})})}}}]);
+//# sourceMappingURL=13.9310e91e.chunk.js.map

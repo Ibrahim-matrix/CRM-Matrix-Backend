@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[3],{6003:function(s,e,n){n.r(e);n(2791);var i=n(184);e.default=function(){return(0,i.jsx)("div",{children:(0,i.jsx)("h1",{children:"This is super Admin Dashboard"})})}}}]);
+//# sourceMappingURL=3.ebf42ba5.chunk.js.map

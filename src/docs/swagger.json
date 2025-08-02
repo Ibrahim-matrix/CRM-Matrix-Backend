@@ -1,0 +1,92 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "CRM-API Documentation"
+  },
+  "paths": {
+    "/v1/admin/auth/signin": {
+      "post": {
+        "summary": "Login using web",
+        "parameters": [
+          {
+            "name": "credentials",
+            "in": "body",
+            "description": "Login credentials",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/admin/auth/signout": {
+      "post": {
+        "summary": "Logout using web",
+        "parameters": [
+          {
+            "name": "Logout user",
+            "in": "header",
+            "description": "Logout credentials",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogoutCredentials"
+            }
+          },
+          {
+            "name": "Logout user",
+            "in": "header",
+            "description": "Logout credentials",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogoutCredentials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginCredentials": {
+      "type": "object",
+      "properties": {
+        "Email": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "Email": "testadmin10@gmail.com",
+        "Password": "admin@123",
+        "type": "web"
+      }
+    },
+    "LogoutCredentials": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "type": "web"
+      }
+    }
+  }
+}
