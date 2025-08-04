@@ -113,21 +113,22 @@ const getProposalById = catchAsync(async (req, res) => {
 const updateProposal = catchAsync(async (req, res) => {
   const { id } = req.params;
 
-  const proposal = await Proposal.findById(id);
+  const updatedProposal = await Proposal.findByIdAndUpdate(
+    id,
+    { $set: req.body },
+    { new: true, runValidators: true }
+  );
 
-  if (!proposal) {
+  if (!updatedProposal) {
     return res.status(httpStatus.NOT_FOUND).json({
       message: "Proposal not found",
       Data: [],
     });
   }
 
-  Object.assign(proposal, req.body); // ✅ safely copy fields
-  await proposal.save(); // ✅ save changes
-
   return res.status(httpStatus.OK).json({
     message: "updated proposal successfully.",
-    Data: proposal,
+    Data: updatedProposal,
   });
 });
 
